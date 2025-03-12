@@ -1,0 +1,4 @@
+repository "GameJam2/SoLongSuckers@3408821@cloud"
+  path "/"
+    br "/main"
+    co "/main"
