@@ -186,14 +186,20 @@ public class CharacterMovement : MonoBehaviour
         stamina = maxStamina;
         staminaBar.fillAmount = stamina/maxStamina;
 
+        stickAction.performed += onSuckers;
+        stickAction.canceled += OffSuckers;
     }
 
     void Update()       //Runs once every frame
     {
-        if (stickAction.triggered)       //if the player presses an input for the suckers
-        {
-            onSuckers(); 
-        }
+     //   if (stickAction.triggered)       //if the player presses an input for the suckers
+     //   {
+     //       isSuckersOn = true;
+    //    }
+    //    else
+    //    {
+    //        isSuckersOn = false;
+     //   }
         if (camoAction.triggered && !staminaCooldown)       //if the player presses an input for the camo
         {
             OnCamo();
@@ -207,8 +213,8 @@ public class CharacterMovement : MonoBehaviour
             OnPause();
         }
 
-    
 
+       // onSuckers();
         CheckHidden();
 
 
@@ -283,37 +289,32 @@ public class CharacterMovement : MonoBehaviour
         ClimbUpdate();
     }
 
-    void onSuckers()   //Runs when the suckers button is pressed
+    void OffSuckers(InputAction.CallbackContext context)
+    {
+        isSuckersOn = false;
+
+        alphaCol.a = 0.5f;
+        staminaBar.color = alphaCol;
+        //  suckersUI.GetComponent<TMP_Text>().text = "Suckers:OFF";
+        isClimbing = false;
+        if (!isSuckersOn && currentMode == "Climb")     //If suckers are turned off while climbing, player returns to the move state
+        {
+            currentMode = "Move";
+            // RotateLegs();
+        }
+    }
+
+    void onSuckers(InputAction.CallbackContext context)   //Runs when the suckers button is pressed
     {
 
         if (!staminaCooldown)
         {
 
-            isSuckersOn = !isSuckersOn;    //Toggles suckers status
+            isSuckersOn = true;
 
-            if (isSuckersOn)
-            {
-
-                alphaCol.a = 1f;
-                staminaBar.color = alphaCol;
+            alphaCol.a = 1f;
+            staminaBar.color = alphaCol;
                 
-                //  suckersUI.GetComponent<TMP_Text>().text = "Suckers:ON";      //Changes the UI text based off whether the suckers are on or off
-            }
-            else if (!isSuckersOn)
-            {
-                alphaCol.a = 0.5f;
-                staminaBar.color = alphaCol;
-              //  suckersUI.GetComponent<TMP_Text>().text = "Suckers:OFF";
-                isClimbing = false;
-
-            }
-
-
-            if (!isSuckersOn && currentMode == "Climb")     //If suckers are turned off while climbing, player returns to the move state
-            {
-                currentMode = "Move";
-               // RotateLegs();
-            }
 
         }
         
@@ -337,9 +338,10 @@ public class CharacterMovement : MonoBehaviour
 
 
 
+            isSuckersOn = false;
+            isClimbing = false;
+            currentMode = "Move";
 
-
-            onSuckers();
             colourReset();
 
 
@@ -442,7 +444,7 @@ public class CharacterMovement : MonoBehaviour
             transform.position = cp;                                  //go to interperlated postion
             transform.rotation = Quaternion.Slerp(transform.rotation, helper.rotation, delta * rotateSpeed);   //rotate to follow the helper's rotation
 
-            LookForGround();
+          //  LookForGround();
         }
     }
 
@@ -721,6 +723,7 @@ public class CharacterMovement : MonoBehaviour
         if (Physics.Raycast(origin, direction, out hit, 1.2f))
         {
             isClimbing = false;
+            isSuckersOn = false;
             currentMode = "Move";
         }
 

@@ -45,7 +45,7 @@ public class Stepper : MonoBehaviour
     }
 
 
-    public void TryMove()
+    public void Update()
     {
         if (Moving) return;
 
