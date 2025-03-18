@@ -143,6 +143,13 @@ public class CharacterMovement : MonoBehaviour
 
     public AudioSource impactSound;
 
+    // Adding walking sounds here
+
+    public AudioSource walkSource;
+
+    public AudioClip[] walkingSounds; 
+    public AudioClip[] pipeWalkingSounds;
+
 
     public Transform currentCheckP;
 
@@ -280,8 +287,31 @@ public class CharacterMovement : MonoBehaviour
             float targetAngle = cameraTransform.eulerAngles.y;
             Quaternion targetRotation = Quaternion.Euler(0, targetAngle, 0);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);  //character turns smoothly because of the Lerp
+        
+            // adding audio input here for walking
+            if (!walkSource.isPlaying)
+            {
+                ollieWalkSound();
+            }
+        
         }
 
+    }
+
+    void ollieWalkSound()
+    {
+        if (currentMode == "Pipe")
+        {
+            int index = Random.Range(0, pipeWalkingSounds.Length);
+            walkSource.clip = pipeWalkingSounds[index];
+        }
+        else
+        {
+            int index = Random.Range(0, walkingSounds.Length);
+            walkSource.clip = walkingSounds[index];
+        }
+
+        walkSource.Play();
     }
 
     void playerClimbState()   //may need to remove and just run CLimbUpdate from UpdateState
@@ -443,6 +473,9 @@ public class CharacterMovement : MonoBehaviour
             Vector3 cp = Vector3.Lerp(startPos, targetPos, posT);      //create a lerp between the starting and ending position
             transform.position = cp;                                  //go to interperlated postion
             transform.rotation = Quaternion.Slerp(transform.rotation, helper.rotation, delta * rotateSpeed);   //rotate to follow the helper's rotation
+            
+            // Adding walk sounds to the climbing
+            ollieWalkSound();
 
           //  LookForGround();
         }
