@@ -30,8 +30,6 @@ public class CharacterMovement : MonoBehaviour
 
     private Transform cameraTransform;      //Position of the camera
 
-    public GameObject suckersUI;            //Gameobject with the text component that displays whether the suckers are on or off
-
     float delta;                            //Time.deltaTime
 
 
@@ -119,7 +117,9 @@ public class CharacterMovement : MonoBehaviour
     Transform pipeOrientPass;
 
 
+    public Image SuckersUI;
 
+    public Sprite SuckersOn, SuckersOff;
 
     public Image staminaBar;
 
@@ -155,7 +155,7 @@ public class CharacterMovement : MonoBehaviour
 
     public Transform currentCheckP;
 
-    public Color alphaCol;
+  //s  public Color alphaCol;
 
     public Sprite CamoHidden, CamoSpotted;
 
@@ -174,8 +174,8 @@ public class CharacterMovement : MonoBehaviour
 
         playerRender.material = playerMat;
 
-        alphaCol = staminaBar.color;
-        alphaCol.a = 0.5f;
+      //  alphaCol = staminaBar.color;
+       // alphaCol.a = 0.5f;
 
         moveAction = playerInput.actions["Move"];            //Gets actions from inout action asset
         stickAction = playerInput.actions["Stick"];
@@ -326,9 +326,10 @@ public class CharacterMovement : MonoBehaviour
     void OffSuckers(InputAction.CallbackContext context)
     {
         isSuckersOn = false;
+        SuckersUI.sprite = SuckersOff;
 
-        alphaCol.a = 0.5f;
-        staminaBar.color = alphaCol;
+      //  alphaCol.a = 0.5f;
+      //  staminaBar.color = alphaCol;
         //  suckersUI.GetComponent<TMP_Text>().text = "Suckers:OFF";
         isClimbing = false;
         if (!isSuckersOn && currentMode == "Climb")     //If suckers are turned off while climbing, player returns to the move state
@@ -345,9 +346,10 @@ public class CharacterMovement : MonoBehaviour
         {
 
             isSuckersOn = true;
+            SuckersUI.sprite = SuckersOn;
 
-            alphaCol.a = 1f;
-            staminaBar.color = alphaCol;
+           // alphaCol.a = 1f;
+         //   staminaBar.color = alphaCol;
                 
 
         }
@@ -368,12 +370,13 @@ public class CharacterMovement : MonoBehaviour
            // ColorBlock cb = staminaBar.color;
           //  cb.normalColor = Color.red;
             staminaBar.color = Color.red;
-            alphaCol = staminaBar.color;
+          //  alphaCol = staminaBar.color;
 
 
 
             isSuckersOn = false;
             isClimbing = false;
+            SuckersUI.sprite = SuckersOff;
             currentMode = "Move";
 
             colourReset();
@@ -481,7 +484,11 @@ public class CharacterMovement : MonoBehaviour
             // Adding walk sounds to the climbing
             ollieWalkSound();
 
-          //  LookForGround();
+            if (moveInput.y < 0)
+            {
+                LookForGround();
+            }
+
         }
     }
 
@@ -760,6 +767,7 @@ public class CharacterMovement : MonoBehaviour
         if (Physics.Raycast(origin, direction, out hit, 1.2f))
         {
             isClimbing = false;
+            SuckersUI.sprite = SuckersOff;
             isSuckersOn = false;
             currentMode = "Move";
         }
