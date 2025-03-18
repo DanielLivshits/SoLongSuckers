@@ -150,6 +150,8 @@ public class CharacterMovement : MonoBehaviour
     public AudioClip[] walkingSounds; 
     public AudioClip[] pipeWalkingSounds;
 
+    public float nextPlayTime = 0f;
+    public float SFXbuffer = 0.4f;
 
     public Transform currentCheckP;
 
@@ -288,11 +290,7 @@ public class CharacterMovement : MonoBehaviour
             Quaternion targetRotation = Quaternion.Euler(0, targetAngle, 0);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);  //character turns smoothly because of the Lerp
         
-            // adding audio input here for walking
-            if (!walkSource.isPlaying)
-            {
-                ollieWalkSound();
-            }
+            ollieWalkSound();
         
         }
 
@@ -300,18 +298,24 @@ public class CharacterMovement : MonoBehaviour
 
     void ollieWalkSound()
     {
-        if (currentMode == "Pipe")
+        if (!walkSource.isPlaying && Time.time >= nextPlayTime) // Has a buffer time so the SFX don't play on top of each other.
         {
-            int index = Random.Range(0, pipeWalkingSounds.Length);
-            walkSource.clip = pipeWalkingSounds[index];
-        }
-        else
-        {
-            int index = Random.Range(0, walkingSounds.Length);
-            walkSource.clip = walkingSounds[index];
-        }
+            if (currentMode == "Pipe")
+            {
+                int index = Random.Range(0, pipeWalkingSounds.Length);
+                walkSource.clip = pipeWalkingSounds[index];
+            }
+            else
+            {
+                int index = Random.Range(0, walkingSounds.Length);
+                walkSource.clip = walkingSounds[index];
+            }
 
-        walkSource.Play();
+            walkSource.Play();
+            nextPlayTime = Time.time + SFXbuffer; 
+        }
+        
+        
     }
 
     void playerClimbState()   //may need to remove and just run CLimbUpdate from UpdateState
