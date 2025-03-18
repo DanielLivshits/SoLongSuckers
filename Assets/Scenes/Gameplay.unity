@@ -23078,6 +23078,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0d2f7e9b4ddcb24488edc8b70f0c0b0b, type: 3}
   - {fileID: 8300000, guid: 864cc99ae715aa04bbe50e7f784aabe0, type: 3}
   - {fileID: 8300000, guid: ed3fc15f358a5ee49adb01bbafd66d49, type: 3}
+  nextPlayTime: 0
+  SFXbuffer: 0.4
   currentCheckP: {fileID: 707847918}
   alphaCol: {r: 0, g: 0, b: 0, a: 0}
   CamoHidden: {fileID: 21300000, guid: cc02b88d9d79f0d41ad47db4ba947eb4, type: 3}
