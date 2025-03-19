@@ -1131,7 +1131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1649900163229149903, guid: cbb7f9bafeb6b2144ad04f2a56e2a824, type: 3}
       propertyPath: m_Speed
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1726527512867401859, guid: cbb7f9bafeb6b2144ad04f2a56e2a824, type: 3}
       propertyPath: m_Layer
@@ -5546,7 +5546,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &589787133
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11480,7 +11480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1649900163229149903, guid: cbb7f9bafeb6b2144ad04f2a56e2a824, type: 3}
       propertyPath: m_Speed
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1649900163229149903, guid: cbb7f9bafeb6b2144ad04f2a56e2a824, type: 3}
       propertyPath: m_Radius
@@ -18273,7 +18273,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1649900163229149903, guid: cbb7f9bafeb6b2144ad04f2a56e2a824, type: 3}
       propertyPath: m_Speed
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1726527512867401859, guid: cbb7f9bafeb6b2144ad04f2a56e2a824, type: 3}
       propertyPath: m_Layer
@@ -20477,7 +20477,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1649900163229149903, guid: cbb7f9bafeb6b2144ad04f2a56e2a824, type: 3}
       propertyPath: m_Speed
-      value: 6
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1649900163229149903, guid: cbb7f9bafeb6b2144ad04f2a56e2a824, type: 3}
       propertyPath: m_Radius

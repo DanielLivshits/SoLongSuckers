@@ -335,7 +335,7 @@ public class CharacterMovement : MonoBehaviour
         if (!isSuckersOn && currentMode == "Climb")     //If suckers are turned off while climbing, player returns to the move state
         {
             currentMode = "Move";
-            // RotateLegs();
+            RotateLegs();
         }
     }
 
@@ -378,6 +378,7 @@ public class CharacterMovement : MonoBehaviour
             isClimbing = false;
             SuckersUI.sprite = SuckersOff;
             currentMode = "Move";
+            RotateLegs();
 
             colourReset();
 
@@ -434,7 +435,7 @@ public class CharacterMovement : MonoBehaviour
         targetPos = hit.point + (hit.normal * offsetFromWall);           //target position is where the player is climbing to, including an offset from the wall
         posT = 0;                                                   //no time has elapsed
         inPosition = false;                                       //player is not in position
-       // RotateLegs();
+        RotateLegs();
     }
 
     public void Tick(float delta)        //plays once per frame while in the climb state
@@ -627,10 +628,11 @@ public class CharacterMovement : MonoBehaviour
 
         if (isInPipe && currentMode != "Pipe")
         {
-            if (currentMode == "Climb")
-            {
-               // RotateLegs();
-            }
+            // if (currentMode == "Climb")
+            // {
+            //    RotateLegs();
+            // }
+            legCenter.gameObject.SetActive(false);
           //  float targetAngle = cameraTransform.eulerAngles.y;
            // Quaternion targetRotation = Quaternion.Euler(0, targetAngle, 0);
            // transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
@@ -640,11 +642,13 @@ public class CharacterMovement : MonoBehaviour
             pipeOrientPass = PipeOrient;
 
 
-            //rotate player to face into the pipe
+
         }
         else if (!isInPipe && currentMode == "Pipe")
         {
             currentMode = "Move";
+            legCenter.gameObject.SetActive(true);
+            RotateLegs();
         }
 
 
@@ -660,7 +664,7 @@ public class CharacterMovement : MonoBehaviour
 
         Vector3 move = new Vector3(0, 0, input.x);
 
-       // move = move.x * this.transform.forward.;
+
 
         controller.Move(moveDir.normalized * input.x * Time.deltaTime * playerSpeed);
 
@@ -697,7 +701,7 @@ public class CharacterMovement : MonoBehaviour
         {
             legCenter.transform.Rotate(-90f, 0, 0, Space.Self);
         }
-        else
+        else if (!isClimbing)
         {
             legCenter.transform.Rotate(90f, 0, 0, Space.Self);
         }

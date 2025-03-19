@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 638241076}
   - component: {fileID: 638241075}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: MusicPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -691,10 +691,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.9528302, g: 0.9528302, b: 0.9528302, a: 1}
-    m_HighlightedColor: {r: 0.7924528, g: 0.6466714, b: 0.70313984, a: 1}
+    m_NormalColor: {r: 0.5754717, g: 0.31216627, b: 0.48702782, a: 1}
+    m_HighlightedColor: {r: 0.9529412, g: 0.9529412, b: 0.9529412, a: 1}
     m_PressedColor: {r: 0.21568628, g: 0.09411765, b: 0.27450982, a: 1}
-    m_SelectedColor: {r: 0.58431375, g: 0.2627451, b: 0.5686275, a: 1}
+    m_SelectedColor: {r: 0.9529412, g: 0.9529412, b: 0.9529412, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -1047,7 +1047,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: It's the alpha!
+  m_text: Now with more fish!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -1110,7 +1110,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -79.8633, y: 0, z: 0, w: 0}
+  m_margin: {x: -96.06941, y: 0, z: -21.043732, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1393,10 +1393,10 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.9529412, g: 0.9529412, b: 0.9529412, a: 1}
-    m_HighlightedColor: {r: 0.7921569, g: 0.64705884, b: 0.7019608, a: 1}
+    m_NormalColor: {r: 0.5764706, g: 0.3137255, b: 0.49019608, a: 1}
+    m_HighlightedColor: {r: 0.9529412, g: 0.9529412, b: 0.9529412, a: 1}
     m_PressedColor: {r: 0.21564454, g: 0.09420612, b: 0.2735849, a: 1}
-    m_SelectedColor: {r: 0.58431375, g: 0.2627451, b: 0.5686275, a: 1}
+    m_SelectedColor: {r: 0.9529412, g: 0.9529412, b: 0.9529412, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
