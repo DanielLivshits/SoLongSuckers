@@ -151,7 +151,7 @@ public class CharacterMovement : MonoBehaviour
     public AudioClip[] pipeWalkingSounds;
 
     public float nextPlayTime = 0f;
-    public float SFXbuffer = 0.4f;
+    public float SFXbuffer = 0.2f;
 
     public Transform currentCheckP;
 
