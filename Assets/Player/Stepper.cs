@@ -6,7 +6,7 @@ public class Stepper : MonoBehaviour
 {
     [SerializeField] Transform homeTransform;
 
-    [SerializeField] float wantStepAtDistance;
+    float wantStepAtDistance;
 
     [SerializeField] float moveDuration;
 
@@ -47,7 +47,9 @@ public class Stepper : MonoBehaviour
 
     public void Update()
     {
-        if (Moving) return;
+        wantStepAtDistance = Random.Range(1.8f, 2.2f);
+
+       // if (Moving) return;
 
         float distFromHome = Vector3.Distance(transform.position, homeTransform.position);
 

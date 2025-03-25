@@ -163,6 +163,7 @@ public class CharacterMovement : MonoBehaviour
 
     public GameObject spottedIcon;
 
+    public Transform bodyPos;
 
     private void Awake()   //Runs on startup
     {
@@ -209,7 +210,7 @@ public class CharacterMovement : MonoBehaviour
     //    {
     //        isSuckersOn = false;
      //   }
-        if (camoAction.triggered && !staminaCooldown)       //if the player presses an input for the camo
+        if (camoAction.triggered && !staminaCooldown && (input.x == 0 && input.y == 0))       //if the player presses an input for the camo
         {
             OnCamo();
         }
@@ -289,7 +290,9 @@ public class CharacterMovement : MonoBehaviour
             float targetAngle = cameraTransform.eulerAngles.y;
             Quaternion targetRotation = Quaternion.Euler(0, targetAngle, 0);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);  //character turns smoothly because of the Lerp
-        
+
+
+            colourReset();
             ollieWalkSound();
         
         }
@@ -448,6 +451,7 @@ public class CharacterMovement : MonoBehaviour
 
         if (!isLerping)               //if the player is in position but hasn't started moving
         {
+
             moveInput = moveAction.ReadValue<Vector2>();          //reads user input
 
 
@@ -472,6 +476,8 @@ public class CharacterMovement : MonoBehaviour
         }
         else        //if the player is moving between spots
         {
+
+            colourReset();
             posT += delta * climbSpeed;     //moving according to time and climb speed
             if (posT > 1)                  
             {
@@ -569,6 +575,7 @@ public class CharacterMovement : MonoBehaviour
 
     void GetInPosition()
     {
+        colourReset();
         posT += delta * 5f;
 
         if (posT > 1)
@@ -699,11 +706,14 @@ public class CharacterMovement : MonoBehaviour
     {
         if (isClimbing)
         {
-            legCenter.transform.Rotate(-90f, 0, 0, Space.Self);
+           // legCenter.transform.Rotate(-90f, 0, 0, Space.Self);
+            bodyPos.transform.Rotate(0, 0, -90f, Space.Self);
         }
         else if (!isClimbing)
         {
-            legCenter.transform.Rotate(90f, 0, 0, Space.Self);
+          //  legCenter.transform.Rotate(90f, 0, 0, Space.Self);
+            bodyPos.transform.Rotate(0, 0, 90f, Space.Self);
+
         }
     }
 
@@ -774,8 +784,11 @@ public class CharacterMovement : MonoBehaviour
             SuckersUI.sprite = SuckersOff;
             isSuckersOn = false;
             currentMode = "Move";
+            RotateLegs();
         }
 
     }
+
+  
 
 }
