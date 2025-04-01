@@ -16,6 +16,8 @@ public class GuardStateMachine : Detector {
     public Vector3 GOrigin;
 
     public bool hasGrabbed;
+
+
   //  public Vector3 LKL;
 
     public UnityEngine.AI.NavMeshAgent agent;
@@ -39,7 +41,7 @@ public class GuardStateMachine : Detector {
         searchState = new SearchState(this);
         lookAroundState = new LookAroundState(this);
 
-        animator = GetComponentInChildren<Animator>();
+      //  animator = GetComponentInChildren<Animator>();
     }
 
     void Start() {

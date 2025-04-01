@@ -32,6 +32,8 @@ Material:
         m_Scale: {x: 3.13, y: 4.22}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats: []
+    m_Floats:
+    - _Glossiness: 0.8
+    - _Metallic: 0.14
     m_Colors: []
   m_BuildTextureStacks: []

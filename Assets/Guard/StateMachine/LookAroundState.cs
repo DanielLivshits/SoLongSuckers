@@ -15,8 +15,8 @@ public class LookAroundState : IGuardState
     }
     public void Enter()
     {
-        
-        this.guard.animator.Play("LookAroundAnim", 0, 0f);
+        this.guard.animator.SetBool("IsWalking", false);
+
         animTimer = 0;
         Debug.Log("Looking");
     }
@@ -33,11 +33,13 @@ public class LookAroundState : IGuardState
             this.guard.transform.parent.position = this.guard.GOrigin;
             this.guard.ChangeState(this.guard.patrolState);
         }
+
         animTimer += Time.deltaTime;
         if (animTimer >= 4f)
         {
             this.guard.ChangeState(this.guard.patrolState);
         }
+
     }
 
     public void Exit()

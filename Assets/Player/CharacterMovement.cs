@@ -6,6 +6,7 @@ using UnityEngine.UI;            //for accessing UI
 //using UnityEngine.UIElements;
 using TMPro;                     //for accessing UI texts
 using UnityEngine.SceneManagement;
+using UnityEngine.Animations.Rigging;
 
 [RequireComponent(typeof(CharacterController), typeof(PlayerInput))]  //components required for the script
 
@@ -165,6 +166,8 @@ public class CharacterMovement : MonoBehaviour
 
     public Transform bodyPos;
 
+    public Rig OllieRig;
+   
     private void Awake()   //Runs on startup
     {
    
@@ -646,6 +649,10 @@ public class CharacterMovement : MonoBehaviour
 
             currentMode = "Pipe";
 
+            RotateLegs();
+
+            OllieRig.weight = 0;
+
             pipeOrientPass = PipeOrient;
 
 
@@ -656,6 +663,8 @@ public class CharacterMovement : MonoBehaviour
             currentMode = "Move";
             legCenter.gameObject.SetActive(true);
             RotateLegs();
+
+            OllieRig.weight = 1;
         }
 
 
@@ -704,12 +713,12 @@ public class CharacterMovement : MonoBehaviour
 
     void RotateLegs()
     {
-        if (isClimbing)
+        if (currentMode == "Climb")
         {
            // legCenter.transform.Rotate(-90f, 0, 0, Space.Self);
             bodyPos.transform.Rotate(0, 0, -90f, Space.Self);
         }
-        else if (!isClimbing)
+        else if (currentMode == "Move" || currentMode == "Pipe")
         {
           //  legCenter.transform.Rotate(90f, 0, 0, Space.Self);
             bodyPos.transform.Rotate(0, 0, 90f, Space.Self);

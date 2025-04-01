@@ -11,6 +11,7 @@ public class GrabPlayer : MonoBehaviour
     {
 
         guardSM = GetComponentInParent<GuardStateMachine>();
+
     }
 
     private void OnTriggerEnter(Collider other)

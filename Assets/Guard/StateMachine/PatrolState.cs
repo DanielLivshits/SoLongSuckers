@@ -32,6 +32,7 @@ public class PatrolState : IGuardState {
     public void Enter() {
         Debug.Log("GUARD STATE: PATROL");
 
+        this.guard.animator.SetBool("IsWalking", true);
         this.guard.hasGrabbed = false;
 
         //this.curPoint = this.patrolPoints[curIdx];
