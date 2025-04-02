@@ -166,7 +166,9 @@ public class CharacterMovement : MonoBehaviour
 
     public Transform bodyPos;
 
-    public Rig OllieRig;
+    //  public Rig OllieRig;
+
+    public GameObject MainModel, PipeModel;
    
     private void Awake()   //Runs on startup
     {
@@ -636,35 +638,40 @@ public class CharacterMovement : MonoBehaviour
     {
         isInPipe = !isInPipe;
 
-        if (isInPipe && currentMode != "Pipe")
+        if (isInPipe && currentMode != "Pipe")  //enter pipe
         {
             // if (currentMode == "Climb")
             // {
             //    RotateLegs();
             // }
             legCenter.gameObject.SetActive(false);
-          //  float targetAngle = cameraTransform.eulerAngles.y;
-           // Quaternion targetRotation = Quaternion.Euler(0, targetAngle, 0);
-           // transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
+            //  float targetAngle = cameraTransform.eulerAngles.y;
+            // Quaternion targetRotation = Quaternion.Euler(0, targetAngle, 0);
+            // transform.rotation = Quaternion.Lerp(transform.rotation, targetRotation, 10f * Time.deltaTime);
 
+            MainModel.SetActive(false);
+            PipeModel.SetActive(true);
             currentMode = "Pipe";
 
             RotateLegs();
 
-            OllieRig.weight = 0;
+          //  OllieRig.weight = 0;
 
             pipeOrientPass = PipeOrient;
 
 
 
         }
-        else if (!isInPipe && currentMode == "Pipe")
+        else if (!isInPipe && currentMode == "Pipe")  //exit pipe
         {
             currentMode = "Move";
+            PipeModel.SetActive(false);
+            MainModel.SetActive(true);
             legCenter.gameObject.SetActive(true);
+
             RotateLegs();
 
-            OllieRig.weight = 1;
+           // OllieRig.weight = 1;
         }
 
 
