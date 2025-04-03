@@ -40,6 +40,7 @@ public class pipe : MonoBehaviour
 
                 playerq.SetActive(false);
                 player.position = inP.position;
+                player.rotation = inP.rotation;
                 playerq.SetActive(true);
             }
 
