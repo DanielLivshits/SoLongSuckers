@@ -725,7 +725,7 @@ public class CharacterMovement : MonoBehaviour
            // legCenter.transform.Rotate(-90f, 0, 0, Space.Self);
             bodyPos.transform.Rotate(0, 0, -90f, Space.Self);
         }
-        else if (currentMode == "Move" || currentMode == "Pipe")
+        else if (currentMode == "Move")
         {
           //  legCenter.transform.Rotate(90f, 0, 0, Space.Self);
             bodyPos.transform.Rotate(0, 0, 90f, Space.Self);
