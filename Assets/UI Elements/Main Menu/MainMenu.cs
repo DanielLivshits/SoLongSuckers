@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
 {
     private void Awake()
     {
+        Time.timeScale = 1;
         Resources.UnloadUnusedAssets();
     }
     public void OnExit()

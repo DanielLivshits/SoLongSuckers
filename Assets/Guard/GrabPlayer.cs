@@ -19,9 +19,7 @@ public class GrabPlayer : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             guardSM.hasGrabbed = true;
-            other.gameObject.SetActive(false);
-            other.transform.position = other.gameObject.GetComponent<CharacterMovement>().currentCheckP.position;
-            other.gameObject.SetActive(true);
+            other.gameObject.GetComponent<CharacterMovement>().GoCheckpoint();
         }
     }
 }

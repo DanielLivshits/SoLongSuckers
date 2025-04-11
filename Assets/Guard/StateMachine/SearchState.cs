@@ -27,8 +27,10 @@ public class SearchState : IGuardState
         }
         if (this.guard.hasGrabbed)
         {
+            this.guard.agent.isStopped = true;
             this.guard.transform.parent.position = this.guard.GOrigin;
             this.guard.ChangeState(this.guard.patrolState);
+            this.guard.agent.isStopped = false;
         }
         if (!this.guard.agent.pathPending)
         {

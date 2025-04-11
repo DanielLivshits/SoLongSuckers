@@ -169,7 +169,12 @@ public class CharacterMovement : MonoBehaviour
     //  public Rig OllieRig;
 
     public GameObject MainModel, PipeModel;
-   
+
+    public bool isPaused = false;
+
+    public GameObject PauseMenu;
+
+    public GameObject[] guards;
     private void Awake()   //Runs on startup
     {
    
@@ -203,6 +208,8 @@ public class CharacterMovement : MonoBehaviour
 
         stickAction.performed += onSuckers;
         stickAction.canceled += OffSuckers;
+
+        pauseAction.performed += OnPause;
     }
 
     void Update()       //Runs once every frame
@@ -222,10 +229,6 @@ public class CharacterMovement : MonoBehaviour
         if (removeAction.triggered)
         {
             colourReset();
-        }
-        if (pauseAction.triggered)
-        {
-            OnPause();
         }
 
 
@@ -773,9 +776,30 @@ public class CharacterMovement : MonoBehaviour
         }
     }
 
-   void OnPause()
+   public void OnPause(InputAction.CallbackContext context)
     {
-        SceneManager.LoadScene("Gameplay");
+
+
+        PauseMenuThing();
+
+    }
+
+    public void PauseMenuThing()
+    {
+        isPaused = !isPaused;
+
+        if (isPaused)
+        {
+            Time.timeScale = 0;
+            PauseMenu.SetActive(true);
+        }
+        else if (!isPaused)
+        {
+            Debug.Log("unPAused");
+
+            PauseMenu.SetActive(false);
+            Time.timeScale = 1;
+        }
     }
     
     public void OnSpotted()
@@ -806,5 +830,19 @@ public class CharacterMovement : MonoBehaviour
     }
 
   
+    public void GoCheckpoint()
+    {
+        this.gameObject.SetActive(false);
+        this.transform.position = currentCheckP.position;
+        this.gameObject.SetActive(true);
+        ResetGuards();
+    }
+
+    void ResetGuards()
+    {
+        for (int i = 0; i <= guards.Length-1; i++){
+            guards[i].GetComponent<GuardStateMachine>().hasGrabbed = true;
+        }
+    }
 
 }
