@@ -8,6 +8,7 @@ public class GuardStateMachine : Detector {
     public ChaseState chaseState;
     public SearchState searchState;
     public LookAroundState lookAroundState;
+    public ResetState resetState;
     public List<Transform> patrolPoints;
     public Animator animator;
 
@@ -40,6 +41,8 @@ public class GuardStateMachine : Detector {
         chaseState = new ChaseState(this);
         searchState = new SearchState(this);
         lookAroundState = new LookAroundState(this);
+        resetState = new ResetState(this);
+
 
       //  animator = GetComponentInChildren<Animator>();
     }

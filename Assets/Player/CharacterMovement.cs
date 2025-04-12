@@ -175,6 +175,10 @@ public class CharacterMovement : MonoBehaviour
     public GameObject PauseMenu;
 
     public GameObject[] guards;
+
+    public GameObject CaughtUI;
+
+    public GameObject WinUI;
     private void Awake()   //Runs on startup
     {
    
@@ -656,7 +660,6 @@ public class CharacterMovement : MonoBehaviour
             PipeModel.SetActive(true);
             currentMode = "Pipe";
 
-            RotateLegs();
 
           //  OllieRig.weight = 0;
 
@@ -672,7 +675,7 @@ public class CharacterMovement : MonoBehaviour
             MainModel.SetActive(true);
             legCenter.gameObject.SetActive(true);
 
-            RotateLegs();
+
 
            // OllieRig.weight = 1;
         }
@@ -835,14 +838,29 @@ public class CharacterMovement : MonoBehaviour
         this.gameObject.SetActive(false);
         this.transform.position = currentCheckP.position;
         this.gameObject.SetActive(true);
+        PauseMenu.SetActive(false);
         ResetGuards();
     }
 
     void ResetGuards()
     {
         for (int i = 0; i <= guards.Length-1; i++){
-            guards[i].GetComponent<GuardStateMachine>().hasGrabbed = true;
+            guards[i].GetComponentInChildren<GuardStateMachine>().hasGrabbed = true;
         }
+    }
+
+    public void OnCaught()
+    {
+        Time.timeScale = 0;
+        CaughtUI.SetActive(true);
+
+    }
+
+    public void OnWind()
+    {
+        Time.timeScale = 0;
+        WinUI.SetActive(true);
+
     }
 
 }

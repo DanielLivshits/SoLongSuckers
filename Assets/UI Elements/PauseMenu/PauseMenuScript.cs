@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 public class PauseMenuScript : MonoBehaviour
 {
     public GameObject player;
+
+    public GameObject CaughtUI;
+
+    public GameObject WinUI;
     void Start()
     {
         
@@ -40,6 +44,8 @@ public class PauseMenuScript : MonoBehaviour
     public void OnCheckpoint()
     {
         Time.timeScale = 1;
+
+        CaughtUI.SetActive(false);
 
         player.GetComponent<CharacterMovement>().GoCheckpoint();
 

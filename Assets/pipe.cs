@@ -5,7 +5,7 @@ using Cinemachine;
 
 public class pipe : MonoBehaviour
 {
-    public Transform inP, outP, player;
+    public Transform inP, outP, player, rot;
     public GameObject playerq;
     public GameObject playerCam, pipeCam;
     public Transform pipeOrientation;
@@ -40,7 +40,7 @@ public class pipe : MonoBehaviour
 
                 playerq.SetActive(false);
                 player.position = inP.position;
-                player.rotation = inP.rotation;
+                player.rotation = rot.rotation;
                 playerq.SetActive(true);
             }
 

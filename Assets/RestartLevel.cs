@@ -9,7 +9,7 @@ public class RestartLevel : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene("Gameplay");
+            other.gameObject.GetComponent<CharacterMovement>().OnWind();
         }
     }
 }
